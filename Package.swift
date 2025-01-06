@@ -10,23 +10,23 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(name: "AliyunLogProducer", targets: ["AliyunLogProducer"]),
-        .library(name: "AliyunLogOT", targets: ["AliyunLogOT"]),
-        .library(name: "AliyunLogOTSwift", targets: ["AliyunLogOTSwift"]),
-        .library(name: "AliyunLogCore", targets: ["AliyunLogCore"]),
-        .library(name: "AliyunLogTrace", targets: ["AliyunLogTrace"]),
-        .library(name: "AliyunLogURLSessionInstrumentation", targets: ["AliyunLogURLSessionInstrumentation"]),
-        .library(name: "AliyunLogWKWebViewInstrumentation", targets: ["AliyunLogWKWebViewInstrumentation"]),
-        .library(name: "AliyunLogCrashReporter", targets: ["AliyunLogCrashReporter"]),
-        .library(name: "AliyunLogNetworkDiagnosis", targets: ["AliyunLogNetworkDiagnosis"]),
-        .library(name: "AliyunLogOtlpExporter", targets: ["AliyunLogOtlpExporter"]),
-        .library(name: "AliyunLogCrashReporter2", targets: ["AliyunLogCrashReporter2", "WPKMobiWrapper"]),
-        .library(name: "AliyunLogOTelCommon", targets: ["AliyunLogOTelCommon"]),
+        // .library(name: "AliyunLogOT", targets: ["AliyunLogOT"]),
+        // .library(name: "AliyunLogOTSwift", targets: ["AliyunLogOTSwift"]),
+        // .library(name: "AliyunLogCore", targets: ["AliyunLogCore"]),
+        // .library(name: "AliyunLogTrace", targets: ["AliyunLogTrace"]),
+        // .library(name: "AliyunLogURLSessionInstrumentation", targets: ["AliyunLogURLSessionInstrumentation"]),
+        // .library(name: "AliyunLogWKWebViewInstrumentation", targets: ["AliyunLogWKWebViewInstrumentation"]),
+        // .library(name: "AliyunLogCrashReporter", targets: ["AliyunLogCrashReporter"]),
+        // .library(name: "AliyunLogNetworkDiagnosis", targets: ["AliyunLogNetworkDiagnosis"]),
+        // .library(name: "AliyunLogOtlpExporter", targets: ["AliyunLogOtlpExporter"]),
+        // .library(name: "AliyunLogCrashReporter2", targets: ["AliyunLogCrashReporter2", "WPKMobiWrapper"]),
+        // .library(name: "AliyunLogOTelCommon", targets: ["AliyunLogOTelCommon"]),
 //        .library(name: "WPKMobi", targets: ["WPKMobi"]),
 //        .library(name: "AliNetworkDiagnosis", targets: ["AliNetworkDiagnosis"])
     ],
-    dependencies: [
-        .package(url: "https://github.com/open-telemetry/opentelemetry-swift", from: "1.9.1")
-    ],
+    // dependencies: [
+    //     .package(url: "https://github.com/open-telemetry/opentelemetry-swift", from: "1.9.1")
+    // ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
@@ -48,165 +48,165 @@ let package = Package(
             ],
             publicHeadersPath: "Producer/include/"
         ),
-        .target(
-            name: "AliyunLogOTSwift",
-            path: "Sources",
-            exclude: [
-                "OTSwift/Info.plist"
-            ],
-            sources: [
-                "OTSwift/"
-            ],
-            publicHeadersPath: "OTSwift/include/"
-        ),
-        .target(
-            name: "AliyunLogOT",
-            dependencies: ["AliyunLogOTSwift"],
-            path: "Sources",
-            exclude: [
-                "OT/Info.plist"
-            ],
-            sources: [
-                "OT/", "OT/Logs/"
-            ],
-            publicHeadersPath: "OT/include/"
-        ),
-        .target(
-            name: "AliyunLogCore",
-            dependencies: ["AliyunLogProducer", "AliyunLogOT", "AliyunLogOTSwift"],
-            path: "Sources",
-            exclude: [
-                "Core/Info.plist"
-            ],
-            sources: [
-                "Core/"
-            ],
-            publicHeadersPath: "Core/include/"
-        ),
-        .target(
-            name: "AliyunLogTrace",
-            dependencies: ["AliyunLogCore"],
-            path: "Sources",
-            exclude: [
-                "Trace/Info.plist"
-            ],
-            sources: [
-                "Trace/"
-            ],
-            publicHeadersPath: "Trace/include/"
-        ),
-        .target(
-            name: "AliyunLogURLSessionInstrumentation",
-            dependencies: [
-                .product(name: "URLSessionInstrumentation", package: "opentelemetry-swift"),
-                .product(name: "OpenTelemetryApi", package: "opentelemetry-swift")
-            ],
-            path: "Sources/Instrumentation",
-            sources: [
-                "AliyunLogURLSession/"
-            ],
-            publicHeadersPath: "AliyunLogURLSession/include/"
-        ),
-        .target(
-            name: "AliyunLogWKWebViewInstrumentation",
-            dependencies: [],
-            path: "Sources/Instrumentation",
-            sources: [
-                "WKWebView/"
-            ],
-            publicHeadersPath: "WKWebView/include/"
-        ),
-        .target(
-            name: "AliyunLogCrashReporter",
-            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliyunLogTrace"],
-            path: "Sources",
-            sources: [
-                "CrashReporter/"
-            ],
-            publicHeadersPath: "CrashReporter/include",
-            linkerSettings: [
-//                .linkedFramework("CoreGraphics")
-            ]
-        ),
-        .target(
-            name: "Unity4SLS",
-            path: "Sources",
-            sources: [
-                "Unity4SLS/"
-            ],
-            publicHeadersPath: "Unity4SLS/include"
-        ),
-        .target(
-            name: "SLSIPA4Unity",
-            path: "Sources",
-            sources: [
-                "SLSIPA4Unity/"
-            ],
-            publicHeadersPath: "SLSIPA4Unity/include"
-        ),
-        .target(
-            name: "AliyunLogNetworkDiagnosis",
-            dependencies: ["AliyunLogCore", "AliyunLogOT", "AliNetworkDiagnosis"],
-            path: "Sources",
-            sources: [
-                "NetworkDiagnosis/"
-            ],
-            publicHeadersPath: "NetworkDiagnosis/include"
-        ),
-        .target(
-            name: "AliyunLogCrashReporter2",
-            dependencies: [
-                "WPKMobiWrapper",
-                "AliyunLogOtlpExporter",
-                "AliyunLogOTelCommon",
-                .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
-            ],
-            path: "Sources",
-            sources: [
-                "CrashReporter2/"
-            ]
-        ),
-        .target(
-            name: "AliyunLogOtlpExporter",
-            dependencies: [
-                "AliyunLogProducer",
-                "AliyunLogOTelCommon",
-                .product(name: "OpenTelemetryApi", package: "opentelemetry-swift"),
-                .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
-            ],
-            path: "Sources",
-            sources: [
-                "OtlpExporter/"
-            ],
-            publicHeadersPath: "OtlpExporter/include"
-        ),
-        .target(
-            name: "WPKMobiWrapper",
-            dependencies: ["WPKMobi"],
-            path: "Sources",
-            sources: [
-                "WPKMobiWrapper/"
-            ],
-            publicHeadersPath: "WPKMobiWrapper/include"
-        ),
-        .target(
-            name: "AliyunLogOTelCommon",
-            dependencies: [
-                .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
-            ],
-            path: "Sources",
-            sources: [
-                "OTelCommon/"
-            ]
-        ),
-        .binaryTarget(
-            name: "WPKMobi",
-            path: "Sources/WPKMobi/WPKMobi.xcframework"
-        ),
-        .binaryTarget(
-            name: "AliNetworkDiagnosis",
-            path: "Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework"
-        ),
+//         .target(
+//             name: "AliyunLogOTSwift",
+//             path: "Sources",
+//             exclude: [
+//                 "OTSwift/Info.plist"
+//             ],
+//             sources: [
+//                 "OTSwift/"
+//             ],
+//             publicHeadersPath: "OTSwift/include/"
+//         ),
+//         .target(
+//             name: "AliyunLogOT",
+//             dependencies: ["AliyunLogOTSwift"],
+//             path: "Sources",
+//             exclude: [
+//                 "OT/Info.plist"
+//             ],
+//             sources: [
+//                 "OT/", "OT/Logs/"
+//             ],
+//             publicHeadersPath: "OT/include/"
+//         ),
+//         .target(
+//             name: "AliyunLogCore",
+//             dependencies: ["AliyunLogProducer", "AliyunLogOT", "AliyunLogOTSwift"],
+//             path: "Sources",
+//             exclude: [
+//                 "Core/Info.plist"
+//             ],
+//             sources: [
+//                 "Core/"
+//             ],
+//             publicHeadersPath: "Core/include/"
+//         ),
+//         .target(
+//             name: "AliyunLogTrace",
+//             dependencies: ["AliyunLogCore"],
+//             path: "Sources",
+//             exclude: [
+//                 "Trace/Info.plist"
+//             ],
+//             sources: [
+//                 "Trace/"
+//             ],
+//             publicHeadersPath: "Trace/include/"
+//         ),
+//         .target(
+//             name: "AliyunLogURLSessionInstrumentation",
+//             dependencies: [
+//                 .product(name: "URLSessionInstrumentation", package: "opentelemetry-swift"),
+//                 .product(name: "OpenTelemetryApi", package: "opentelemetry-swift")
+//             ],
+//             path: "Sources/Instrumentation",
+//             sources: [
+//                 "AliyunLogURLSession/"
+//             ],
+//             publicHeadersPath: "AliyunLogURLSession/include/"
+//         ),
+//         .target(
+//             name: "AliyunLogWKWebViewInstrumentation",
+//             dependencies: [],
+//             path: "Sources/Instrumentation",
+//             sources: [
+//                 "WKWebView/"
+//             ],
+//             publicHeadersPath: "WKWebView/include/"
+//         ),
+//         .target(
+//             name: "AliyunLogCrashReporter",
+//             dependencies: ["AliyunLogCore", "AliyunLogOT", "AliyunLogTrace"],
+//             path: "Sources",
+//             sources: [
+//                 "CrashReporter/"
+//             ],
+//             publicHeadersPath: "CrashReporter/include",
+//             linkerSettings: [
+// //                .linkedFramework("CoreGraphics")
+//             ]
+//         ),
+//         .target(
+//             name: "Unity4SLS",
+//             path: "Sources",
+//             sources: [
+//                 "Unity4SLS/"
+//             ],
+//             publicHeadersPath: "Unity4SLS/include"
+//         ),
+//         .target(
+//             name: "SLSIPA4Unity",
+//             path: "Sources",
+//             sources: [
+//                 "SLSIPA4Unity/"
+//             ],
+//             publicHeadersPath: "SLSIPA4Unity/include"
+//         ),
+//         .target(
+//             name: "AliyunLogNetworkDiagnosis",
+//             dependencies: ["AliyunLogCore", "AliyunLogOT", "AliNetworkDiagnosis"],
+//             path: "Sources",
+//             sources: [
+//                 "NetworkDiagnosis/"
+//             ],
+//             publicHeadersPath: "NetworkDiagnosis/include"
+//         ),
+//         .target(
+//             name: "AliyunLogCrashReporter2",
+//             dependencies: [
+//                 "WPKMobiWrapper",
+//                 "AliyunLogOtlpExporter",
+//                 "AliyunLogOTelCommon",
+//                 .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
+//             ],
+//             path: "Sources",
+//             sources: [
+//                 "CrashReporter2/"
+//             ]
+//         ),
+//         .target(
+//             name: "AliyunLogOtlpExporter",
+//             dependencies: [
+//                 "AliyunLogProducer",
+//                 "AliyunLogOTelCommon",
+//                 .product(name: "OpenTelemetryApi", package: "opentelemetry-swift"),
+//                 .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
+//             ],
+//             path: "Sources",
+//             sources: [
+//                 "OtlpExporter/"
+//             ],
+//             publicHeadersPath: "OtlpExporter/include"
+//         ),
+//         .target(
+//             name: "WPKMobiWrapper",
+//             dependencies: ["WPKMobi"],
+//             path: "Sources",
+//             sources: [
+//                 "WPKMobiWrapper/"
+//             ],
+//             publicHeadersPath: "WPKMobiWrapper/include"
+//         ),
+//         .target(
+//             name: "AliyunLogOTelCommon",
+//             dependencies: [
+//                 .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift")
+//             ],
+//             path: "Sources",
+//             sources: [
+//                 "OTelCommon/"
+//             ]
+//         ),
+//         .binaryTarget(
+//             name: "WPKMobi",
+//             path: "Sources/WPKMobi/WPKMobi.xcframework"
+//         ),
+//         .binaryTarget(
+//             name: "AliNetworkDiagnosis",
+//             path: "Sources/AliNetworkDiagnosis/AliNetworkDiagnosis.xcframework"
+//         ),
 //        .binaryTarget(
 //            name: "OpenTelemetryApi",
 //            path: "Sources/OpenTelemetryApi/OpenTelemetryApi.xcframework"
