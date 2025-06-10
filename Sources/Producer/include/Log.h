@@ -12,7 +12,7 @@
 
 #endif /* Log_h */
 
-@interface Log : NSObject
+@interface AliyunLog : NSObject
 
 + (instancetype) log;
 
@@ -90,3 +90,6 @@
 - (unsigned int) getTime;
 
 @end
+
+// 为了保持向后兼容性，提供类型别名
+typedef AliyunLog Log;
