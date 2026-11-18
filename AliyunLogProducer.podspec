@@ -4,7 +4,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'AliyunLogProducer'
-    s.version          = "4.3.4"
+    s.version          = "4.3.8"
     s.summary          = 'aliyun log service ios producer.'
 
     s.description      = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     s.homepage         = 'https://github.com/aliyun/aliyun-log-ios-sdk'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'aliyun-log' => 'yulong.gyl@alibaba-inc.com' }
-    s.source           = { :git => 'https://gitee.com/aliyun-sls/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://github.com/newqtt/aliyun-log-ios-sdk.git', :tag => s.version.to_s }
     s.social_media_url = 'http://t.cn/AiRpol8C'
 
     # s.ios.deployment_target = '10.0'
@@ -31,14 +31,6 @@ Pod::Spec.new do |s|
 
     #  s.default_subspec = 'Producer'
   
-    s.pod_target_xcconfig = {
-        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386',
-    }
-  
-    s.user_target_xcconfig = {
-        'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64 i386'
-    }
-
     s.ios.deployment_target = '10.0'
     s.tvos.deployment_target =  '10.0'
     s.osx.deployment_target =  '10.12'
